@@ -48,7 +48,8 @@ A C++11/14 lightweight abstraction built upon the https://github.com/miguelmarti
 // Fire Event without Parameter
   t_EventHandler.FireEvent("FoobarEvent");
 // Fire Event with Parameter
-  t_EventHandler.FireEvent("FoobarEvent", &MouseMove{});
+  MouseMove t_MouseMove{}
+  t_EventHandler.FireEvent("FoobarEvent", &t_MouseMove);
 ```
 ## Unregistering Events
 ```c++
