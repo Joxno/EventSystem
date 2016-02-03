@@ -1,0 +1,9 @@
+# git ignore file
+Debug
+Debug\*
+Release
+Release\*
+*.sdf
+*.opendb
+*.filters
+*.user
