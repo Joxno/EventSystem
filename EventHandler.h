@@ -31,9 +31,10 @@ namespace EventSystem
 		}
 		void FireEvent(string EventName)
 		{
+			Event t_Event{};
 			// Cpp Callback
 			if (m_Events.find(EventName) != m_Events.end())
-				m_Events[EventName].emit(&Event());
+				m_Events[EventName].emit(&t_Event);
 		}
 		void FireEvent(const string &EventName, Event *Data)
 		{

@@ -16,6 +16,11 @@ int main()
 	{
 		EventSlotHandler t_SlotHandler{};
 
+		// Event Data
+			MouseMove t_MouseMove{ 5,5 };
+			MouseDown t_MouseDown{ 5,5, 0 };
+			KeyDown t_KeyDown { 65 };
+			KeyUp t_KeyUp { 65 };
 		// Global Functions
 			t_SlotHandler += t_EventHandler.RegisterCallback("OnMouseMove", CreateSlot(OnMouseMove));
 			t_SlotHandler += t_EventHandler.RegisterCallback("OnMouseDown", CreateSlot(OnMouseDown));
@@ -32,18 +37,18 @@ int main()
 			}
 
 		// Fire Events
-			t_EventHandler.FireEvent("OnMouseMove", &MouseMove{ 5,5 });
-			t_EventHandler.FireEvent("OnMouseDown", &MouseDown{ 5,5, 0 });
+			t_EventHandler.FireEvent("OnMouseMove", &t_MouseMove);
+			t_EventHandler.FireEvent("OnMouseDown", &t_MouseDown);
 
-			t_EventHandler.FireEvent("KeyDown", &KeyDown{ 65 });
-			t_EventHandler.FireEvent("KeyUp", &KeyUp{ 65 });
+			t_EventHandler.FireEvent("KeyDown", &t_KeyDown);
+			t_EventHandler.FireEvent("KeyUp", &t_KeyUp);
 
 			t_EventHandler.FireEvent("Initialize");
 
 		// Fire Incorrect Event
 			try
 			{
-				t_EventHandler.FireEvent("OnMouseMove", &MouseDown{ 25,25, 3 });
+				t_EventHandler.FireEvent("OnMouseMove", &t_MouseDown);
 			}
 			catch (exception e)
 			{
@@ -52,7 +57,8 @@ int main()
 	} // Disconnects all Events
 
 	// Fire Event after Disconnect
-		t_EventHandler.FireEvent("OnMouseMove", &MouseMove{ 67,55 });
+		MouseMove t_MouseMove{ 65, 65 };
+		t_EventHandler.FireEvent("OnMouseMove", &t_MouseMove);
 
 	return 0;
 }
